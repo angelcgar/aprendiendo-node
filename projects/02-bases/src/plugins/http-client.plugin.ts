@@ -1,7 +1,7 @@
-const axios = require("axios");
+import axios from "axios";
 
-const http = {
-  get: async (url) => {
+export const http = {
+  get: async (url: string) => {
     const { data } = await axios.get(url);
     return data;
 
@@ -9,9 +9,5 @@ const http = {
     // return await resp.json();
   },
 
-  post: async (url, body) => {},
-};
-
-module.exports = {
-  http,
+  post: async (url: string, body: any) => {},
 };
