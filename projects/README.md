@@ -7,7 +7,7 @@ node>=18
 intala lo necesario
 
 ```bash
-npm i -D tsx @types/node typescript
+npm i -D typescript @types/node tsx rimraf ts-node
 ```
 
 hacer una prueva

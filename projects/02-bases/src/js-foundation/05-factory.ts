@@ -9,15 +9,18 @@ interface BuildMakePersonOptions {
 
 interface PersonOptions {
   name: string;
-  birthdate: string
+  birthdate: string;
 }
 
-export const buildMakePerson = ({ getUUID, getAge }: BuildMakePersonOptions) => {
+export const buildMakePerson = ({
+  getUUID,
+  getAge,
+}: BuildMakePersonOptions) => {
   return ({ name, birthdate }: PersonOptions) => {
     return {
       id: getUUID(),
       name: name,
-      birthday: birthdate,
+      birthdate: birthdate,
       age: getAge(birthdate),
     };
   };

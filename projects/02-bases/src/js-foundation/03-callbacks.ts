@@ -6,7 +6,7 @@ interface User {
 const users: User[] = [
   {
     id: 1,
-    name: "John Doe",
+    name: "Juan Hernandez",
   },
   {
     id: 2,
@@ -22,7 +22,9 @@ export function getUserById(
     return user.id === id;
   });
 
-  if (!user) return callback(`user not found with id: ${id}`);
+  if (!user) {
+    return callback(`user not found with id: ${id}`);
+  }
 
   return callback(undefined, user);
 }

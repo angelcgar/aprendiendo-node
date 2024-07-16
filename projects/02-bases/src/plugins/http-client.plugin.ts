@@ -9,5 +9,13 @@ export const http = {
     // return await resp.json();
   },
 
-  post: async (url: string, body: any) => {},
+  post: async (url?: string, body?: any) => {
+    throw new Error("Not implementes");
+  },
+  put: async (url: string, body: any) => {
+    throw new Error("Not implementes");
+  },
+  delete: async (url: string) => {
+    throw new Error("Not implementes");
+  },
 };

@@ -12,10 +12,10 @@ getPokenmonById(2)
 // const { buildMakePerson } = require("./js-foundation/05-factory");
 // const getPokenmonById = require("./js-foundation/06-promises");
 
-const logger = buildLogger("app.js");
+// const logger = buildLogger("app.js");
 
-logger.log("hola mundo");
-logger.error('algo malo')
+// logger.log("hola mundo");
+// logger.error('algo malo')
 
 // console.log("hola mundo");
 // console.log(process.env.base_url);
