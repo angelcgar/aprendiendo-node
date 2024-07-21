@@ -16,12 +16,12 @@ export class ServerApp {
     showTable,
     fileName,
     fileDestination,
-  }: RunOptions) {
+  }: RunOptions): void {
     console.log("Server run...");
 
-    const table = new CreateTable().execute({ base, limit });
+    const table: string = new CreateTable().execute({ base, limit });
 
-    const wasCreated = new SaveFile().execute({
+    const wasCreated: boolean = new SaveFile().execute({
       fileContent: table,
       fileDestination,
       fileName,

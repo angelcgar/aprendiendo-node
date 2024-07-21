@@ -16,7 +16,7 @@ export class SaveFile implements SaveFileUseCase {
   execute({
     fileContent,
     fileDestination = "outputs",
-    fileName = "base",
+    fileName = "table",
   }: Options): boolean {
     try {
       fs.mkdirSync(fileDestination, { recursive: true });
@@ -25,7 +25,7 @@ export class SaveFile implements SaveFileUseCase {
       // console.log("file Created!");
       return true;
     } catch (error) {
-      console.error(error);
+      // console.error(error); // todo: winstond
       return false;
     }
   }
