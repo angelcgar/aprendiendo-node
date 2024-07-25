@@ -6,7 +6,5 @@ import { ServerApp } from "./presentation/server";
 })();
 
 async function main() {
-  // ServerApp.start();
-  // console.log(envs.PORT);
-  // console.log(envs.MAILER_EMAIL);
+  ServerApp.start();
 }
