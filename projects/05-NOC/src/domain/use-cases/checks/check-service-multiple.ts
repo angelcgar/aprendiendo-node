@@ -1,19 +1,25 @@
 import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
 import { LogRepository } from "../../repository/log.repository";
 
-interface CheckServiceUseCase {
+interface CheckServiceMultipleUseCase {
   execute(url: string): Promise<boolean>;
 }
 
 type SuccessCallback = (() => void) | undefined;
 type ErrorCallback = ((error: string) => void) | undefined;
 
-export class CheckService implements CheckServiceUseCase {
+export class CheckServiceMultiple implements CheckServiceMultipleUseCase {
   constructor(
-    private readonly LogRepository: LogRepository,
+    private readonly LogRepository: LogRepository[],
     private readonly successCallback: SuccessCallback,
     private readonly errorCallback: ErrorCallback
   ) {}
+
+  private callLogs(log: LogEntity) {
+    this.LogRepository.forEach((logRepository) => {
+      logRepository.saveLog(log);
+    });
+  }
 
   public async execute(url: string): Promise<boolean> {
     try {
@@ -28,7 +34,7 @@ export class CheckService implements CheckServiceUseCase {
         level: LogSeverityLevel.low,
         origin,
       });
-      this.LogRepository.saveLog(log);
+      this.callLogs(log);
       this.successCallback && this.successCallback();
       return true;
     } catch (error) {
@@ -39,7 +45,7 @@ export class CheckService implements CheckServiceUseCase {
         level: LogSeverityLevel.high,
         origin,
       });
-      this.LogRepository.saveLog(log);
+      this.callLogs(log);
 
       this.errorCallback && this.errorCallback(errorMessage);
 
