@@ -6,3 +6,6 @@
 .env
 
 /mongo
+/postgres
+
+todo.md
