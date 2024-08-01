@@ -21,7 +21,7 @@ si tienes este problema
 
 ```bash
 pnpm install mongoose --save
- EACCES  EACCES: permission denied, scandir '/home/angelcg/Dev/aprendiendo-node/projects/05-NOC/mongo/diagnostic.data'
+ EACCES  EACCES: permission denied, scandir '/home/$USER/path/to/projects/05-NOC/mongo/diagnostic.data'
 ```
 
-ejecuta `npm run preinstall` en la raiz de tu proyecto
+ejecuta `chmod -R 755 mongo/` en la raiz de tu proyecto
