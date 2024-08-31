@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Websocket - <small></small></h1>
+
+    <form action="">
+      <input type="text" placeholder="Enviar mendaje" />
+      <button>Enviar</button>
+    </form>
+
+    <ul id="messages"></ul>
+
+    <script>
+      const form = document.querySelector("form");
+      const input = document.querySelector("input");
+      const messageElement = document.querySelector("ul");
+      const statusElement = document.querySelector("small");
+      let socket = null;
+
+      function sendMessage(messages) {
+        if (messages <= 0) {
+          throw new Error("Message is require");
+        }
+        socket && socket.send(messages);
+      }
+
+      function rederMessage(message) {
+        const li = document.createElement("li");
+        li.innerHTML = message;
+        messageElement.prepend(li);
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = input.value;
+        sendMessage(message);
+        input.value = null;
+      });
+
+      function connetedToServer() {
+        socket = new WebSocket("ws://localhost:3000");
+
+        socket.onopen = (event) => {
+          statusElement.innerText = "Online";
+        };
+
+        socket.onclose = (event) => {
+          statusElement.innerText = "Ofline";
+
+          setTimeout(() => {
+            connetedToServer();
+          }, 2000);
+        };
+
+        socket.onmessage = (event) => {
+          const { payload } = JSON.parse(event.data);
+
+          rederMessage(payload);
+        };
+      }
+
+      connetedToServer();
+    </script>
+  </body>
+</html>
